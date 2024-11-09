@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SupermarketModelContainer" CdmEntityContainer="SupermarketEntities">
+    <EntitySetMapping Name="Должности">
+      <EntityTypeMapping TypeName="SupermarketModel.Должности">
+        <MappingFragment StoreEntitySet="Должности">
+          <ScalarProperty Name="Номер_должности" ColumnName="Номер должности" />
+          <ScalarProperty Name="Название_должности" ColumnName="Название должности" />
+          <ScalarProperty Name="Сумма_ставки" ColumnName="Сумма ставки" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Отделы">
+      <EntityTypeMapping TypeName="SupermarketModel.Отделы">
+        <MappingFragment StoreEntitySet="Отделы">
+          <ScalarProperty Name="Номер_отдела" ColumnName="Номер отдела" />
+          <ScalarProperty Name="Название_отдела" ColumnName="Название отдела" />
+          <ScalarProperty Name="Кол_во_прилавков" ColumnName="Кол-во прилавков" />
+          <ScalarProperty Name="Кол_во_продавцов" ColumnName="Кол-во продавцов" />
+          <ScalarProperty Name="Номер_зала" ColumnName="Номер зала" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Продажи_товаров">
+      <EntityTypeMapping TypeName="SupermarketModel.Продажи_товаров">
+        <MappingFragment StoreEntitySet="Продажи товаров">
+          <ScalarProperty Name="Номер_продажи" ColumnName="Номер продажи" />
+          <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+          <ScalarProperty Name="Дата" ColumnName="Дата" />
+          <ScalarProperty Name="Время" ColumnName="Время" />
+          <ScalarProperty Name="Кол_во" ColumnName="Кол-во" />
+          <ScalarProperty Name="Товар" ColumnName="Товар" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="SupermarketModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="Номер_сотрудника" ColumnName="Номер сотрудника" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Отдел" ColumnName="Отдел" />
+          <ScalarProperty Name="Год_рождения" ColumnName="Год рождения" />
+          <ScalarProperty Name="Год_поступления_на_работу" ColumnName="Год поступления на работу" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+          <ScalarProperty Name="Пол" ColumnName="Пол" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Город" ColumnName="Город" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+          <ScalarProperty Name="Стаж" ColumnName="Стаж" />
+          <ScalarProperty Name="Фото_Сотрудники" ColumnName="Фото_Сотрудники" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Товары">
+      <EntityTypeMapping TypeName="SupermarketModel.Товары">
+        <MappingFragment StoreEntitySet="Товары">
+          <ScalarProperty Name="Номер_товара" ColumnName="Номер товара" />
+          <ScalarProperty Name="Название_товара" ColumnName="Название товара" />
+          <ScalarProperty Name="Отдел" ColumnName="Отдел" />
+          <ScalarProperty Name="Страна_производитель" ColumnName="Страна-производитель" />
+          <ScalarProperty Name="Условия_хранения" ColumnName="Условия хранения" />
+          <ScalarProperty Name="Сроки_хранения" ColumnName="Сроки хранения" />
+          <ScalarProperty Name="Цена" ColumnName="Цена" />
+          <ScalarProperty Name="Фото_Товары" ColumnName="Фото_Товары" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

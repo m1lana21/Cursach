@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SupermarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Должности">
+    <Key>
+      <PropertyRef Name="Номер_должности" />
+    </Key>
+    <Property Name="Номер_должности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название_должности" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Сумма_ставки" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Сотрудники_Должности" FromRole="Должности" ToRole="Сотрудники" />
+  </EntityType>
+  <EntityType Name="Отделы">
+    <Key>
+      <PropertyRef Name="Номер_отдела" />
+    </Key>
+    <Property Name="Номер_отдела" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название_отдела" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Кол_во_прилавков" Type="Int32" Nullable="false" />
+    <Property Name="Кол_во_продавцов" Type="Int32" Nullable="false" />
+    <Property Name="Номер_зала" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Сотрудники_Отделы" FromRole="Отделы" ToRole="Сотрудники" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Товары_Отделы" FromRole="Отделы" ToRole="Товары" />
+  </EntityType>
+  <EntityType Name="Продажи_товаров">
+    <Key>
+      <PropertyRef Name="Номер_продажи" />
+    </Key>
+    <Property Name="Номер_продажи" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Сотрудник" Type="Int32" Nullable="false" />
+    <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Кол_во" Type="Int32" Nullable="false" />
+    <Property Name="Товар" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Продажа_товаров_Сотрудники" FromRole="Продажи_товаров" ToRole="Сотрудники" />
+    <NavigationProperty Name="Товары" Relationship="Self.FK_Продажа_товаров_Товары" FromRole="Продажи_товаров" ToRole="Товары" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Номер_сотрудника" />
+    </Key>
+    <Property Name="Номер_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Отдел" Type="Int32" Nullable="false" />
+    <Property Name="Год_рождения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Год_поступления_на_работу" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Должность" Type="Int32" Nullable="false" />
+    <Property Name="Пол" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Адрес" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Город" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Стаж" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Фото_Сотрудники" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Должности" Relationship="Self.FK_Сотрудники_Должности" FromRole="Сотрудники" ToRole="Должности" />
+    <NavigationProperty Name="Отделы" Relationship="Self.FK_Сотрудники_Отделы" FromRole="Сотрудники" ToRole="Отделы" />
+    <NavigationProperty Name="Продажи_товаров" Relationship="Self.FK_Продажа_товаров_Сотрудники" FromRole="Сотрудники" ToRole="Продажи_товаров" />
+  </EntityType>
+  <EntityType Name="Товары">
+    <Key>
+      <PropertyRef Name="Номер_товара" />
+    </Key>
+    <Property Name="Номер_товара" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название_товара" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Отдел" Type="Int32" Nullable="false" />
+    <Property Name="Страна_производитель" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Условия_хранения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Сроки_хранения" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Цена" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Фото_Товары" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Отделы" Relationship="Self.FK_Товары_Отделы" FromRole="Товары" ToRole="Отделы" />
+    <NavigationProperty Name="Продажи_товаров" Relationship="Self.FK_Продажа_товаров_Товары" FromRole="Товары" ToRole="Продажи_товаров" />
+  </EntityType>
+  <Association Name="FK_Сотрудники_Должности">
+    <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Должности">
+        <PropertyRef Name="Номер_должности" />
+      </Principal>
+      <Dependent Role="Сотрудники">
+        <PropertyRef Name="Должность" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудники_Отделы">
+    <End Role="Отделы" Type="Self.Отделы" Multiplicity="1" />
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Отделы">
+        <PropertyRef Name="Номер_отдела" />
+      </Principal>
+      <Dependent Role="Сотрудники">
+        <PropertyRef Name="Отдел" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_Отделы">
+    <End Role="Отделы" Type="Self.Отделы" Multiplicity="1" />
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Отделы">
+        <PropertyRef Name="Номер_отдела" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Отдел" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Продажа_товаров_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Продажи_товаров" Type="Self.Продажи_товаров" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Номер_сотрудника" />
+      </Principal>
+      <Dependent Role="Продажи_товаров">
+        <PropertyRef Name="Сотрудник" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Продажа_товаров_Товары">
+    <End Role="Товары" Type="Self.Товары" Multiplicity="1" />
+    <End Role="Продажи_товаров" Type="Self.Продажи_товаров" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Товары">
+        <PropertyRef Name="Номер_товара" />
+      </Principal>
+      <Dependent Role="Продажи_товаров">
+        <PropertyRef Name="Товар" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SupermarketEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Должности" EntityType="Self.Должности" />
+    <EntitySet Name="Отделы" EntityType="Self.Отделы" />
+    <EntitySet Name="Продажи_товаров" EntityType="Self.Продажи_товаров" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="Товары" EntityType="Self.Товары" />
+    <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
+      <End Role="Должности" EntitySet="Должности" />
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудники_Отделы" Association="Self.FK_Сотрудники_Отделы">
+      <End Role="Отделы" EntitySet="Отделы" />
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_Отделы" Association="Self.FK_Товары_Отделы">
+      <End Role="Отделы" EntitySet="Отделы" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Продажа_товаров_Сотрудники" Association="Self.FK_Продажа_товаров_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Продажи_товаров" EntitySet="Продажи_товаров" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Продажа_товаров_Товары" Association="Self.FK_Продажа_товаров_Товары">
+      <End Role="Товары" EntitySet="Товары" />
+      <End Role="Продажи_товаров" EntitySet="Продажи_товаров" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

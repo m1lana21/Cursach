@@ -1,0 +1,22 @@
+﻿<Window x:Class="SupermarketAkhmerova.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SupermarketAkhmerova"
+        mc:Ignorable="d"
+        Title="AkhmerovaSupermarket" MinHeight="450" MinWidth="800" FontFamily="Microsoft YaHei" Icon="Resources\supermarket-icon.ico">
+    <Grid>
+        <Grid Background="#C8DBCD">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="Resources\supermarket.png" Grid.Row="0" VerticalAlignment="Center" Margin="30,0,0,-40" HorizontalAlignment="Left"></Image>
+            <TextBlock Text="Супермаркет" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"></TextBlock>
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="MainFrame_ContentRendered"></Frame>
+            <Button x:Name="BackButton" Click="BackButton_Click" Grid.Row="0" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
+        </Grid>
+    </Grid>
+</Window>

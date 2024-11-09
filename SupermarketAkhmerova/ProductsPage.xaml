@@ -1,0 +1,103 @@
+﻿<Page x:Class="SupermarketAkhmerova.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SupermarketAkhmerova"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductsPage" FontFamily="Microsoft YaHei">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск" Margin="5" FontSize="20"></TextBlock>
+                <TextBox x:Name="SearchTextBox" Height="30" Margin="5" FontSize="20" Width="250" TextChanged="SearchTextBox_TextChanged"></TextBox>
+            </StackPanel>
+            <ComboBox Name="FilterBox" FontSize="20" Height="30" Width="300" Margin="5" SelectionChanged="FilterBox_SelectionChanged">
+                <TextBlock Text="Все"/>
+                <TextBlock Text="Мясной отдел"/>
+                <TextBlock Text="Отдел овощей и фруктов"/>
+                <TextBlock Text="Молочный отдел"/>
+                <TextBlock Text="Отдел бытовой химии"/>
+                <TextBlock Text="Хлебный отдел"/>
+                <TextBlock Text="Рыбный отдел"/>
+                <TextBlock Text="Кондитерский отдел"/>
+                <TextBlock Text="Отдел детских товаров"/>
+                <TextBlock Text="Отдел специй и приправ"/>
+                <TextBlock Text="Отдел круп"/>
+            </ComboBox>
+            <ComboBox Name="SortBox" FontSize="20" Height="30" Width="250" Margin="5" SelectionChanged="SortBox_SelectionChanged">
+                <TextBlock Text="Без сортировки"/>
+                <TextBlock Text="Цена по возрастанию"/>
+                <TextBlock Text="Цена по убыванию"/>
+            </ComboBox>
+            <Button Name="AddButton" Content="Добавить" Click="AddButton_Click"  HorizontalAlignment="Right"></Button>
+        </WrapPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Name="TBCount" FontSize="30" Height="40" TextAlignment="Center"></TextBlock>
+            <TextBlock Name="TBAllRecords" FontSize="30" Height="40" TextAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <ListView Grid.Row="1" x:Name="ProductListView" IsVisibleChanged="ProductListView_IsVisibleChanged"  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Click="MenuItem_Click"></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="800"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill">
+                            <Image.Source>
+                                <Binding Path="Фото_Товары">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            Products\product.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        
+                        <TextBlock Text="{Binding Название_товара}" FontWeight="Bold" FontSize="20" Margin="5" Grid.Column="1" Grid.Row="0"></TextBlock>
+                        
+                        <StackPanel Margin="5" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                            <TextBlock Text="{Binding Отдел_строчный}" FontSize="15"></TextBlock>
+                            <TextBlock Text=" | " FontSize="15"></TextBlock>
+                            <TextBlock Text="Страна-производитель: " FontSize="15"></TextBlock>
+                            <TextBlock Text="{Binding Страна_производитель}" FontSize="15"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="5" Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                            <TextBlock Text="{Binding Условия_хранения, TargetNullValue='нет условий хранения'}" FontSize="15"></TextBlock>
+                            <TextBlock Text=" | " FontSize="15"></TextBlock>
+                            <TextBlock Text="Сроки хранения: " FontSize="15"></TextBlock>
+                            <TextBlock Text="{Binding Сроки_хранения, TargetNullValue='срок годности не ограничен'}" FontSize="15"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="5" Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                            <TextBlock Text="{Binding Цена}" FontSize="15"></TextBlock>
+                            <TextBlock Text=" руб." FontSize="15"></TextBlock>
+                        </StackPanel>
+                        <Button x:Name="EditButton" HorizontalAlignment="Left" Content="Редактировать" Grid.Column="2" Grid.RowSpan="4" Click="EditButton_Click"></Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
